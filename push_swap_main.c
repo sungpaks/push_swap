@@ -6,7 +6,7 @@
 /*   By: sunghoch <sunghoch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 16:12:20 by sunghoch          #+#    #+#             */
-/*   Updated: 2023/09/02 13:56:49 by sunghoch         ###   ########.fr       */
+/*   Updated: 2023/09/02 14:23:37 by sunghoch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int	ps_parse_argument(t_ps *ps, int argc, char **argv)
 			ps_remove_space(argv);
 			if (!**argv)
 				break ;
-			*argv = ps_atoi(*argv, &num);
+			*argv = ps_atoi(*argv, &num, ps);
 			if (!*argv)
 				return (0);
 			if (!push_back(get_new_node(num), &(ps->a)))
@@ -65,7 +65,7 @@ int	ps_parse_argument(t_ps *ps, int argc, char **argv)
 	return (1);
 }
 
-char	*ps_atoi(char *str, int *num)
+char	*ps_atoi(char *str, int *num, t_ps *ps)
 {
 	long long	cnt_minus;
 	long long	result;
@@ -75,11 +75,11 @@ char	*ps_atoi(char *str, int *num)
 		return (str);
 	if (*str == '-' || *str == '+')
 	{
-		if (*str == '-')
+		if (*(str++) == '-')
 			cnt_minus *= -1;
-		if (!*(++str))
-			return (str);
 	}
+	if (!*str)
+		free_and_exit(ps, 1);
 	result = 0;
 	while (('0' <= *str && *str <= '9') && result < 10e12)
 	{

@@ -6,7 +6,7 @@
 /*   By: sunghoch <sunghoch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 15:57:08 by sunghoch          #+#    #+#             */
-/*   Updated: 2023/09/02 13:37:47 by sunghoch         ###   ########.fr       */
+/*   Updated: 2023/09/02 14:20:51 by sunghoch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int		contain(t_stack *p_stack, int num);
 void	ps_init(t_ps *ps);
 int		ps_parse_argument(t_ps *ps, int argc, char **argv);
 void	ps_remove_space(char **str);
-char	*ps_atoi(char *str, int *num);
+char	*ps_atoi(char *str, int *num, t_ps *ps);
 
 int		call_method(t_ps *ps, char *str);
 int		r(t_stack *p_stack);
